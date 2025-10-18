@@ -5,16 +5,17 @@ from .serializers import CategorySerializer, ExpenseSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.db.models import Sum
+from rest_framework.permissions import AllowAny
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [AllowAny]
 
 class ExpenseViewSet(viewsets.ModelViewSet):
     queryset = Expense.objects.all()
     serializer_class = ExpenseSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [AllowAny]
     filterset_fields = ['category', 'date']
 
     @action(detail=False)
